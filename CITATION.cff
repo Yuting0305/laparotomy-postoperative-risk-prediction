@@ -1,18 +1,23 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite the archived software release and the associated manuscript."
+message: "If you use this software, please cite this repository and the associated manuscript."
 title: "Machine Learning Prediction of Postoperative Outcomes After Laparotomy: Analysis Code"
 type: software
 version: 1.0.0
 date-released: 2026-08-31
+
 authors:
-  - family-names: "AUTHOR_FAMILY_NAME"
-    given-names: "AUTHOR_GIVEN_NAME"
+  - family-names: "Shen"
+    given-names: "Yu-Ting"
+
 license: MIT
+
 keywords:
   - machine learning
   - laparotomy
   - postoperative risk
   - LightGBM
   - XGBoost
-repository-code: "https://github.com/USERNAME/REPOSITORY"
-abstract: "Analysis code for developing and evaluating LightGBM and XGBoost models for six postoperative outcomes after open laparotomy surgery."
+
+repository-code: "https://github.com/Yuting0305/laparotomy-postoperative-risk-prediction"
+
+abstract: "Analysis code for developing and evaluating LightGBM and XGBoost models for six study outcomes associated with open laparotomy."
