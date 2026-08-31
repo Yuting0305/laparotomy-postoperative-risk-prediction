@@ -1,25 +1,25 @@
 # Machine Learning Prediction of Postoperative Outcomes After Laparotomy
 
-This repository contains the analysis code used to develop and evaluate LightGBM and XGBoost models for six postoperative outcomes after open laparotomy surgery.
+This repository contains the analysis code used to develop and evaluate LightGBM and XGBoost models for six study outcomes associated with open laparotomy.
 
 ## Included outcomes
 
 | Notebook | Outcome |
 | --- | --- |
-| `01_mortality.ipynb` | Mortality |
-| `02_icu_admission.ipynb` | ICU admission |
-| `03_mechanical_ventilation.ipynb` | Mechanical ventilation |
-| `04_intraoperative_transfusion.ipynb` | Intraoperative transfusion |
-| `05_postoperative_sepsis.ipynb` | Postoperative sepsis |
-| `06_prolonged_length_of_stay.ipynb` | Prolonged length of hospital stay |
+| [01_mortality.ipynb](notebooks/01_mortality.ipynb) | Mortality |
+| [02_icu_admission.ipynb](notebooks/02_icu_admission.ipynb) | ICU admission |
+| [03_mechanical_ventilation.ipynb](notebooks/03_mechanical_ventilation.ipynb) | Mechanical ventilation |
+| [04_intraoperative_transfusion.ipynb](notebooks/04_intraoperative_transfusion.ipynb) | Intraoperative transfusion |
+| [05_postoperative_sepsis.ipynb](notebooks/05_postoperative_sepsis.ipynb) | Postoperative sepsis |
+| [06_prolonged_length_of_stay.ipynb](notebooks/06_prolonged_length_of_stay.ipynb) | Prolonged length of hospital stay |
 
-The notebooks include the complete outcome-specific GridSearchCV ranges reported in Supplementary Table 3, a stratified training/test split, model fitting, training-set cross-validated threshold selection using the Youden index, held-out test-set evaluation, sigmoid calibration fitted by five-fold stratified cross-validation within the training set, calibration assessment, SHAP analysis, and variance inflation factor analysis.
+The notebooks include the complete outcome-specific GridSearchCV ranges reported in Supplementary Table 3, a stratified training/test split, model fitting, training-set cross-validated threshold selection using the Youden index, held-out test-set evaluation, sigmoid calibration fitted by five-fold stratified cross-validation within the training set, calibration assessment, and SHAP analysis.
 
-Only the LightGBM and XGBoost pipelines used in the manuscript are retained. Unused Logistic regression, Random forest, MLP, SMOTE, voting, and stacking code has been removed. The LightGBM search directly enforces the reported constraint `num_leaves <= 2**max_depth`.
+The repository contains only the LightGBM and XGBoost pipelines used in the manuscript. No resampling techniques such as SMOTE were used. The LightGBM search enforces the reported constraint `num_leaves <= 2**max_depth`.
 
 ## Scope of this release
 
-This release covers the primary LightGBM and XGBoost model-development pipelines for the six study outcomes. It does not contain separate scripts for the locally fitted ASA-PS and SURPAS-aligned comparator models, DeLong tests, subgroup analyses, sensitivity analyses, or leave-one-site-out analyses. The repository should therefore be described as the source code for developing and evaluating the LightGBM and XGBoost models, rather than as all statistical analysis code for the study.
+This release covers the primary LightGBM and XGBoost model-development pipelines for the six study outcomes. It does not contain separate scripts for the locally fitted ASA-PS and SURPAS-aligned comparator models, DeLong tests, subgroup analyses, sensitivity analyses, or leave-one-site-out analyses. Therefore, this repository represents the code used to develop and evaluate the LightGBM and XGBoost models rather than all statistical analyses conducted in the study.
 
 ## Data availability
 
@@ -61,11 +61,6 @@ Python 3.11 is recommended.
 
 ```bash
 python -m venv .venv
-```
-
-Activate the environment and install dependencies:
-
-```bash
 pip install -r requirements.txt
 jupyter notebook
 ```
@@ -74,21 +69,19 @@ Open the required notebook from the `notebooks` directory. Each outcome writes i
 
 ## Reproducibility
 
-The notebooks retain the original model settings and use a fixed random seed of 55. Public notebooks contain no stored execution output. Numerical results can be reproduced only with an appropriately authorized dataset prepared using the same inclusion criteria, variable definitions, coding, and preprocessing described in the manuscript.
+The notebooks use a fixed random seed of 55 and contain no stored execution output. Numerical results can be reproduced only with an appropriately authorized dataset prepared using the same inclusion criteria, variable definitions, coding, and preprocessing described in the manuscript.
 
-The complete reported search ranges are computationally intensive. Runtime depends on hardware, the outcome, and the number of valid LightGBM parameter combinations.
+The complete reported search ranges are computationally intensive. Runtime depends on the available hardware, the study outcome, and the number of valid LightGBM parameter combinations.
 
 ## Suggested manuscript statement
 
-> The source code used to develop and evaluate the LightGBM and XGBoost models for the six study outcomes is publicly available in the Zenodo repository at https://doi.org/10.5281/zenodo.XXXXXXX.
+> The source code used to develop and evaluate the LightGBM and XGBoost models for the six study outcomes is publicly available on GitHub at https://github.com/Yuting0305/laparotomy-postoperative-risk-prediction.
 
 ## Citation
 
-Before the first public release, replace the placeholders in `CITATION.cff` with the authors' names and the GitHub repository URL. After archiving release `v1.0.0` in Zenodo, add the assigned DOI.
-
 Suggested citation:
 
-> Author(s). Machine Learning Prediction of Postoperative Outcomes After Laparotomy: Analysis Code. Version 1.0.0. Zenodo. 2026. https://doi.org/10.5281/zenodo.XXXXXXX
+> Shen YT. Machine Learning Prediction of Postoperative Outcomes After Laparotomy: Analysis Code. Version 1.0.0. GitHub. 2026. https://github.com/Yuting0305/laparotomy-postoperative-risk-prediction.
 
 ## Intended use
 
@@ -96,4 +89,4 @@ This code is provided for research and reproducibility purposes. It is not a sta
 
 ## License
 
-The code is released under the MIT License. Confirm institutional authorization and intellectual property requirements before public distribution.
+The code is released under the MIT License.
