@@ -1,0 +1,26 @@
+variable_name,role,used_by,public_description
+Age,predictor,all outcomes,Age at the preoperative assessment
+Sex,predictor,all outcomes,Sex as coded in the authorized analysis dataset
+BMI,predictor,all outcomes,Body mass index
+Smoking,predictor,all outcomes,Smoking status as coded in the authorized analysis dataset
+Emergency,predictor,all outcomes,Emergency operation status
+ASA,predictor,all outcomes,American Society of Anesthesiologists Physical Status class
+eGFR,predictor,all outcomes,Estimated glomerular filtration rate
+HCT,predictor,all outcomes,Hematocrit
+aPTT,predictor,all outcomes,Activated partial thromboplastin time
+Platelet,predictor,all outcomes,Platelet count
+Protime_PT,predictor,all outcomes,Prothrombin time
+ALT,predictor,all outcomes,Alanine aminotransferase
+Dependent status,predictor,all outcomes,Functional dependency status
+NHI procedure points,predictor,all outcomes,Taiwan National Health Insurance payment points corresponding to the surgical order code
+DM,predictor,all outcomes,Diabetes mellitus status
+HT,predictor,all outcomes,Hypertension status
+cancer,predictor,all outcomes,Cancer status
+kidney,predictor,all outcomes,Kidney disease status
+Respiratory,predictor,all outcomes,Respiratory disease status
+Mortality,outcome,mortality notebook,Binary mortality outcome defined in the manuscript
+ICU admission,outcome,ICU admission notebook,Binary ICU admission outcome defined in the manuscript
+Mechanical ventilation,outcome,mechanical ventilation notebook,Binary mechanical ventilation outcome defined in the manuscript
+Intraoperative transfusion,outcome,intraoperative transfusion notebook,Binary intraoperative transfusion outcome defined in the manuscript
+Postoperative sepsis,outcome,postoperative sepsis notebook,Binary postoperative sepsis outcome defined in the manuscript
+Prolonged length of hospital stays,outcome,prolonged length of stay notebook,Binary prolonged length of hospital stay outcome defined in the manuscript
