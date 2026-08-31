@@ -39,7 +39,6 @@ Required column names are documented in `data/data_dictionary.csv`. Variable def
 .
 ├── README.md
 ├── HYPERPARAMETER_SEARCH_RANGES.md
-├── GITHUB_UPLOAD_GUIDE_zh-TW.md
 ├── CITATION.cff
 ├── LICENSE
 ├── requirements.txt
