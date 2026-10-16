@@ -22,7 +22,7 @@ The R scripts read previously generated comparator predictions. They do not fit 
 
 ## Recommended directory layout
 
-Place the six notebooks in `notebooks/` and the R scripts in `r/`. Remove download-generated filename suffixes such as `(1)`, `(2)`, and `(3)` when using the canonical filenames below. In particular, every R outcome script calls `source("functions.R")`.
+Place the six notebooks in `notebooks/` and the R scripts in `r/`. Use the canonical filenames below. In particular, every R outcome script calls `source("functions.R")`.
 
 | Directory | Content |
 | --- | --- |
@@ -94,7 +94,7 @@ Important outputs include:
 - `<outcome>_All_Model_Probabilities_primary_19_features.csv`: held-out `Actual`, `lightGBM`, and `XGBoost` predictions.
 - Calibration reports and raw/calibrated held-out prediction files.
 
-Calibration reports include Brier scores, a training-prevalence null Brier score, Brier skill score, observed and expected events, O:E ratios, and jointly estimated calibration intercept and slope. The supplied notebooks do not currently calculate their confidence intervals. Calibration plots use 10 uniform-width bins, regardless of older comments referring to five quantile bins.
+Calibration reports include Brier scores, a training-prevalence null Brier score, Brier skill score, observed and expected events, O:E ratios, and jointly estimated calibration intercept and slope. The supplied notebooks do not currently calculate their confidence intervals. Calibration plots use 10 uniform-width bins.
 
 Uncalibrated class-weighted model outputs should not be interpreted as absolute event risks. Training-derived classification thresholds are not recommendations to intervene.
 
@@ -126,7 +126,7 @@ For each outcome prefix, place three CSV files in `r/data/`:
 | `<outcome>_All_Model_Probabilities_ASA.csv` | `Actual`, `Logistic.regression` |
 | `<outcome>_All_Model_Probabilities_SURPAS.csv` | `Actual`, `Logistic.regression` |
 
-`Actual` is the 0/1 event label. Prediction columns contain uncalibrated positive-class outputs. For each outcome, all three files use the same test patients in the same row order, as confirmed by the data preparer. The existing label check verifies consistency; no additional patient-ID matching step is required for these already aligned files. Patient membership may differ across outcomes.
+`Actual` is the 0/1 event label. Prediction columns contain uncalibrated positive-class outputs. For each outcome, all three files use the same test patients in the same row order, as confirmed by the data preparer. The scripts additionally check consistency of the outcome-label vectors. Patient membership may differ across outcomes.
 
 The current shared-function default is `ML_FILE_SUFFIX <- "del_4_feature"`. To read the supplied notebook exports, change this setting in `functions.R` to:
 
@@ -146,7 +146,7 @@ Copy the corresponding ML exports from `outputs/<outcome>/Probabilities/` to `r/
 - XGBoost versus modified SURPAS.
 - ASA-PS versus modified SURPAS.
 
-Bonferroni adjustment is applied across these three comparisons separately within each outcome. The manuscript's Table 4 reports the two comparisons involving XGBoost, retaining adjustment for all three. No FDR adjustment is calculated. The current implementation uses pROC's automatic pairing and ROC-direction detection and its default two-sided alternative; it does not explicitly set `paired=TRUE` in the shared function.
+Bonferroni adjustment is applied across these three comparisons separately within each outcome. The manuscript's Table 4 reports the two comparisons involving XGBoost, retaining adjustment for all three. No FDR adjustment is calculated. The current implementation uses pROC's automatic pairing and ROC-direction detection and its default two-sided alternative.
 
 Outputs are written to `r/results/`:
 
@@ -155,9 +155,7 @@ Outputs are written to `r/results/`:
 
 Values below 0.001 are displayed as `<0.001`; other P values are shown to three decimals. Use the Bonferroni-adjusted column for Table 4. Record the analysis environment with `sessionInfo()`.
 
-## Additional script not used for the primary revised analysis
-
-`compare_best_models_SURPAS_ASA.R`, if retained, is a separate exploratory script. It reads `roc_problity_<outcome>_.csv`, `roc_problity_<outcome>_SURPAS.csv`, and `roc_problity_<outcome>_ASA.csv`, with labels in `y_test`. It selects models using test-set AUROC and reports two unadjusted DeLong comparisons. This differs from the revised manuscript's training-based selection and three-comparison Bonferroni adjustment; do not use its output to generate the revised Table 4.
+## Complete-case and other supplementary analyses
 
 The revised Table 5 compares the full test set and its nested complete-case subsets descriptively, using AUROCs, confidence intervals, and absolute differences. No paired or unpaired DeLong test is used for that set-versus-subset comparison. A script generating the revised Table 5 is not included in this package.
 
